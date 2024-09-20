@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 지출 흐름 가계부 (Expense Flow Tracker)
 
-## Getting Started
+이 프로젝트는 사용자의 지출을 추적하고 관리하는 웹 애플리케이션입니다. React와 Next.js를 기반으로 구축되었으며, 사용자 친화적인 인터페이스를 제공합니다.
 
-First, run the development server:
+## 주요 기능
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 달력 기반의 지출 추적
+- 연도 및 월 선택 기능
+- 반응형 디자인
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 기술 스택
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js 14.2.13
+- React 18
+- TypeScript
+- date-fns (날짜 처리 라이브러리)
+- CSS Modules (스타일링)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 프로젝트 구조
