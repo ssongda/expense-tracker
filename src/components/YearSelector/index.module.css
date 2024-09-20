@@ -1,0 +1,34 @@
+.yearSelector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+}
+
+.yearList {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.yearItem {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.selectedYear {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.unselectedYear {
+  color: var(--color-disabled);
+}
+
+.arrowButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 10px;
+  color: var(--color-primary);
+}
