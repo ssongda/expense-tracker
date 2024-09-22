@@ -60,7 +60,11 @@ export const useExpenseList = ({ selectedDate }: Args): ReturnValue => {
 
 
   const totalAmount = useMemo(() => {
-    const total = expenseData.reduce((acc, expense) => acc + parseInt(expense.amount), 0);
+    if (!Array.isArray(expenseData)) {
+      console.error('expenseData is not an array:', expenseData);
+      return '0';
+    }
+    const total = expenseData.reduce((acc, expense) => acc + (Number(expense.amount) || 0), 0);
     return total.toString();
   }, [expenseData]);
 
