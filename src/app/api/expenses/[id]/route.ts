@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../../../../../lib/prisma";
+import { PrismaClient } from '@prisma/client';
 
-export async function DELETE(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
-  const id = searchParams.get('id');
+const prisma = new PrismaClient();
 
-  console.log(id);
+export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+  const id = params.id;
+
 
   if (!id) {
     return NextResponse.json({ error: '유효하지 않은 아이디입니다.' }, { status: 400 });

@@ -1,5 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
-import { Expense } from "..";  // Expenseタイプをインポート
+
+export type Expense = {
+  id: number;
+  category: string;
+  amount: number;
+};
+
 
 type Args = { formattedDate: string }
 
@@ -21,9 +27,10 @@ export const useExpenseList = ({ formattedDate }: Args): ReturnValue => {
       setExpenseData(data);
     } catch (error) {
       console.error("Error fetching expenses:", error);
-      setExpenseData([]);  // エラー時は空配列をセット
+      setExpenseData([]);
     }
   }, [formattedDate]);
+
 
   useEffect(() => {
     fetchExpenseList();

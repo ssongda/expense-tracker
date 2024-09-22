@@ -4,17 +4,7 @@ import { ko } from "date-fns/locale";
 import styles from "./index.module.css";
 import { Button } from "../common/Button";
 import { formatNumber, unformatNumber } from "@/utils/common/formatNumber";
-import { useExpenseList } from "./hooks";
-
-type Expense = {
-  id: number;
-  category: string;
-  amount: number;
-};
-
-export type ExpenseData = {
-  [date: string]: Expense[];
-};
+import { Expense, useExpenseList } from "./hooks";
 
 const DEFAULT_EXPENSE_TYPES = ["식비", "교통비", "오락", "공과금"];
 
@@ -63,6 +53,8 @@ const ExpenseList = ({ selectedDate }: { selectedDate: Date }): JSX.Element => {
       if (!response.ok) {
         throw new Error("지출을 삭제하는데 실패했습니다.");
       }
+
+      await refetchExpenses();
     } catch (err) {
       console.error(err);
       alert("지출을 삭제하는 중 오류가 발생했습니다.");
@@ -71,13 +63,24 @@ const ExpenseList = ({ selectedDate }: { selectedDate: Date }): JSX.Element => {
 
   const handleAddExpense = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newExpense.type && newExpense.amount) {
-      addExpense({
-        category: newExpense.type,
-        amount: unformatNumber(newExpense.amount),
-      });
 
-      setNewExpense({ ...newExpense, amount: "" });
+    const form = e.target as HTMLFormElement;
+
+    const type: string = (form.elements.namedItem("type") as HTMLSelectElement)
+      .value;
+    const amount: string = (
+      form.elements.namedItem("amount") as HTMLInputElement
+    ).value;
+
+    if (!type && !amount) {
+      return;
+    }
+
+    if (type && amount) {
+      addExpense({
+        category: type,
+        amount: unformatNumber(amount),
+      });
     }
   };
 
