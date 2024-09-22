@@ -28,7 +28,12 @@ export const useExpenseList = ({ selectedDate }: Args): ReturnValue => {
 
   const fetchExpenseList = useCallback(async () => {
     try {
-      const response = await fetch(`/api/expenses?date=${formattedDate}`);
+      const response = await fetch(`/api/expenses?date=${formattedDate}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
       if (!response.ok) {
         throw new Error('failed to fetch expenses');
       }
