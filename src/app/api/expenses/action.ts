@@ -2,16 +2,17 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { prisma } from './../../../../../lib/prisma';
+import { PrismaClient } from '@prisma/client'
 
+const prisma = new PrismaClient()
 
 export async function addExpense(formData: FormData) {
-  const amount = parseFloat(formData.get('amount') as string)
+  const amount = parseInt(formData.get('amount') as string)
   const category = formData.get('category') as string
-  const date = new Date(formData.get('date') as string)
+  const date = formData.get('date') as string
 
   await prisma.expense.create({
-    data: { amount, category, date },
+    data: { amount, category, date, year: parseInt(date.split('-')[0]), month: parseInt(date.split('-')[1]) },
   })
 
   revalidatePath('/expenses')
