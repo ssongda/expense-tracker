@@ -1,0 +1,64 @@
+.expenseList {
+  background-color: var(--color-surface);
+  padding: 20px;
+  width: 480px;
+  height: 720px;
+}
+
+.inputContainer {
+  display: flex;
+  margin: 20px 0;
+}
+
+.inputContainer select {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  line-height: 1.5;
+  background-color: var(--color-primary);
+  flex: 0.4;
+}
+
+.inputContainer input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  line-height: 1.5;
+  background-color: var(--color-secondary);
+  text-align: right;
+  padding-right: 8px;
+}
+
+.inputContainer button {
+  background: none;
+  border: none;
+  outline: none;
+  background-color: var(--color-primary);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.expenseItems {
+  list-style-type: none;
+  padding: 0;
+}
+
+.expenseItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+.expenseItem:last-child {
+  border-bottom: none;
+}

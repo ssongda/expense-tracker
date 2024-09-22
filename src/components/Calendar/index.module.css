@@ -17,6 +17,7 @@
   padding: 10px 0;
   color: #333;
   background: var(--color-surface);
+  margin-bottom: 1rem;
 }
 
 .monthDisplay {
@@ -78,6 +79,7 @@
   border-right: 1px solid var(--color-lavender);
   border-top: 1px solid var(--color-lavender);
   overflow: hidden;
+  position: relative;
 
   & + & {
     border-left: none;
@@ -110,4 +112,12 @@
 
 .todayButton:hover {
   background-color: var(--color-lavender-light);
+}
+
+.expense {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 0.8em;
+  color: #e74c3c;
 }
