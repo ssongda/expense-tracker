@@ -1,4 +1,3 @@
-import { Expense, expenseCategorySchema } from "@/domain/model/expense";
 import { formatNumber } from "@/utils/common/formatNumber";
 import { useCallback, useMemo, useRef } from "react";
 import { addExpense } from "../../hooks/addExpense";
@@ -20,7 +19,7 @@ export const useExpenseInput = ({ selectedDate, refetchExpenses }: Args): Return
   const categoryRef = useRef<HTMLSelectElement>(null);
   const amountRef = useRef<HTMLInputElement>(null);
 
-  const formattedDate = useMemo(() => format(selectedDate, 'yyyyMMdd'), [selectedDate])
+  const formattedDate = useMemo(() => format(selectedDate || new Date(), 'yyyyMMdd'), [selectedDate])
 
 
   const handleInputChange = useCallback(() => {
