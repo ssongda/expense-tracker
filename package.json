@@ -11,10 +11,12 @@
   "dependencies": {
     "@prisma/client": "^5.19.1",
     "date-fns": "^4.1.0",
+    "feather-icons": "^4.29.2",
     "next": "14.2.13",
     "prisma": "^5.19.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-feather": "^2.0.10",
     "zod": "^3.23.8"
   },
   "devDependencies": {

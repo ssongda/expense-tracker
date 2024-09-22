@@ -1,0 +1,47 @@
+.inputContainer {
+    display: flex;
+    margin: 20px 0;
+}
+
+.inputContainer select {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    line-height: 1.5;
+    background-color: var(--color-primary);
+    border-radius: 0.5rem;
+}
+
+.inputContainer input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    position: relative;
+    padding: 0.5rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-color: var(--color-background);
+    text-align: right;
+    padding-right: 8px;
+    margin: 0 4px;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-primary);
+}
+
+.inputContainer button {
+    background: none;
+    border: none;
+    outline: none;
+    background-color: var(--color-primary);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

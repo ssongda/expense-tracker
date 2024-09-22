@@ -1,0 +1,37 @@
+.controlPanel {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-primary);
+    padding: 1rem 0;
+}
+
+.checkboxColumn {
+    width: 30px;
+}
+
+.checkboxLabel {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hiddenCheckbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.deleteIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--color-red);
+}
+
+.deleteIcon svg {
+    width: 16px;
+    height: 16px;
+}

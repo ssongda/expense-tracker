@@ -1,4 +1,4 @@
-import Expenses from "./expenses/page";
+import Expenses from './expenses/page';
 
 export default function Home() {
   return (

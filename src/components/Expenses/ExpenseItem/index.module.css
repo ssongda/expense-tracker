@@ -1,0 +1,32 @@
+.tableCell {
+    padding: 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.amountWrapper {
+    padding: 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.checkboxLabel {
+    position: relative;
+    cursor: pointer;
+}
+
+.customCheckbox {
+    position: relative;
+    display: inline-block;
+}
+
+.hiddenCheckbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}

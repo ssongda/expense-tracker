@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const expenseCategorySchema = z.enum(["식비", "교통비", "오락", "공과금"]);
+export const expenseCategorySchema = z.enum(["food", "transfer", "entertainment", "utility"]);
 
 export const expenseSchema = z.object({
   id: z.number().optional(),

@@ -1,14 +1,15 @@
 module.exports = {
-  plugins: ["prettier-plugin-organize-imports", "prettier-plugin-jsdoc"],
+  plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-jsdoc'],
+  printWidth: 50,
   tabWidth: 2,
   useTabs: false,
   semi: true,
   singleQuote: true,
-  trailingComma: "all",
-  arrowParens: "avoid",
+  trailingComma: 'all',
+  arrowParens: 'avoid',
   overrides: [
     {
-      files: ["*.js", "*.ts", "*.tsx", "*.cjs"],
+      files: ['*.js', '*.ts', '*.tsx', '*.cjs'],
       options: {
         jsdocSeperateReturnsFromParam: true,
         jsdocSeparateTagGroups: true,
@@ -18,15 +19,15 @@ module.exports = {
       },
     },
     {
-      files: "*.css",
+      files: '*.css',
       options: {
-        parser: "css",
+        parser: 'css',
         tabWidth: 4,
         singleQuote: false,
       },
     },
     {
-      files: "*.json",
+      files: '*.json',
       options: {
         tabWidth: 4,
         singleQuote: false,

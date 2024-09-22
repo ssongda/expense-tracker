@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   const date = searchParams.get('date');
 
   if (!date) {
-    return NextResponse.json({ error: '유효하지 않은 날짜입니다.' }, { status: 400 });
+    return NextResponse.json({ status: 400, message: '유효하지 않은 날짜입니다.' });
   }
 
   try {
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     });
     return NextResponse.json(expenses);
   } catch (error) {
-    return NextResponse.json({ error, message: '서버 오류가 발생했습니다.' }, { status: 500 });
+    return NextResponse.json({ error, status: 500, message: '서버 오류가 발생했습니다.' });
   }
 }
 
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
 
     if (!amount || !category || !date || !year || !month) {
-      return NextResponse.json({ error: '必須フィールドが欠けています' }, { status: 400 });
+      return NextResponse.json({ stateus: 400, message: '必須フィールドが欠けています' });
     }
 
 
@@ -50,7 +50,29 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(newExpense, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error, message: '서버 오류가 발생했습니다.' }, { status: 500 });
+    return NextResponse.json({ error, status: 500, message: '서버 오류가 발생했습니다.' });
   }
 }
 
+export async function DELETE(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { ids } = body;
+
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return NextResponse.json({ status: 400, message: 'No valid IDs provided.' });
+    }
+
+    const newExpense = await prisma.expense.deleteMany({
+      where: {
+        id: {
+          in: ids
+        }
+      }
+    });
+
+    return NextResponse.json(newExpense, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error, status: 500, message: '서버 오류가 발생했습니다.' });
+  }
+}

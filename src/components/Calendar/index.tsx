@@ -69,6 +69,7 @@ const Calendar: React.FC = () => {
     for (let j = 0; j < 7; j++) {
       const cloneDay = new Date(day);
       const totalExpense = getTotalExpenseForDate(cloneDay);
+      const isToday = isSameDay(cloneDay, new Date());
       days.push(
         <div
           className={`${styles.col} ${styles.cell} ${
@@ -81,7 +82,10 @@ const Calendar: React.FC = () => {
           key={day.toString()}
           onClick={() => onDateClick(cloneDay)}
         >
-          <span className={styles.number}>{format(day, 'd')}</span>
+          <span className={styles.number}>
+            {format(day, 'd')}
+            {isToday && <span className={styles.todayBadge}></span>}
+          </span>
           {totalExpense > 0 && (
             <span className={styles.expense}>
               {totalExpense.toLocaleString()}원
@@ -132,10 +136,7 @@ const Calendar: React.FC = () => {
         </div>
         <div className={styles.body}>{rows}</div>
       </div>
-      <ExpenseList
-        selectedDate={selectedDate}
-        // expenses={expensesByDate[format(selectedDate, "yyyyMMdd")] || []}
-      />
+      <ExpenseList selectedDate={selectedDate} />
     </div>
   );
 };
