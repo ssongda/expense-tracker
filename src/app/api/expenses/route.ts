@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { unformatNumber } from '@/utils/common/formatNumber';
 
 const prisma = new PrismaClient();
 
@@ -31,13 +32,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { amount, category, date, year, month } = body;
 
+
     if (!amount || !category || !date || !year || !month) {
       return NextResponse.json({ error: '必須フィールドが欠けています' }, { status: 400 });
     }
 
+
     const newExpense = await prisma.expense.create({
       data: {
-        amount,
+        amount: unformatNumber(amount),
         category,
         date,
         year,

@@ -21,7 +21,8 @@
       "@/*": ["./src/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/lib/*": ["./lib/*"],
-      "@/prisma/*": ["./lib/prisma/*"]
+      "@/prisma/*": ["./lib/prisma/*"],
+      "@/domain/*": ["./src/domain/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
 import {
-  startOfMonth,
-  startOfWeek,
   addDays,
   format,
-  isSameMonth,
   isSameDay,
-} from "date-fns";
-import { ko } from "date-fns/locale";
-import YearSelector from "../YearSelector";
-import styles from "./index.module.css";
-import { CalendarHeader } from "./CalendarHeader";
-import ExpenseList from "../Expenses";
+  isSameMonth,
+  startOfMonth,
+  startOfWeek,
+} from 'date-fns';
+import { ko } from 'date-fns/locale';
+import React, { useState } from 'react';
+import ExpenseList from '../Expenses';
+import YearSelector from '../YearSelector';
+import { CalendarHeader } from './CalendarHeader';
+import styles from './index.module.css';
 
 interface Expense {
   id: number;
@@ -31,49 +31,31 @@ const Calendar: React.FC = () => {
   const [expensesByDate, setExpensesByDate] = useState<ExpensesByDate>({});
 
   const getTotalExpenseForDate = (date: Date) => {
-    const dateString = format(date, "yyyy-MM-dd");
+    const dateString = format(date, 'yyyy-MM-dd');
     const expenses = expensesByDate[dateString] || [];
     return expenses.reduce((total, expense) => total + expense.amount, 0);
   };
 
   const onDateClick = (day: Date) => {
     setSelectedDate(day);
-    // 여기에서 ExpenseList 컴포넌트의 데이터를 업데이트하는 로직 추가
     fetchExpensesForDate(day);
   };
 
   const fetchExpensesForDate = async (date: Date) => {
     try {
-      const formattedDate = format(date, "yyyyMMdd");
+      const formattedDate = format(date, 'yyyyMMdd');
       const response = await fetch(`/api/expenses?date=${formattedDate}`);
       if (!response.ok) {
-        throw new Error("데이터 取得に失敗しました。");
+        throw new Error('데이터 取得に失敗しました。');
       }
       const data = await response.json();
-      setExpensesByDate((prev) => ({
+      setExpensesByDate(prev => ({
         ...prev,
         [formattedDate]: data,
       }));
     } catch (err) {
-      console.error("데이터 取得中にエラーが発生しました。", err);
+      console.error('데이터 取得中にエラーが発生しました。', err);
     }
-  };
-
-  const addExpense = (expense: Omit<Expense, "id">) => {
-    const dateKey = format(selectedDate, "yyyy-MM-dd");
-    const newExpense = { ...expense, id: Date.now() };
-    setExpensesByDate((prev) => ({
-      ...prev,
-      [dateKey]: [...(prev[dateKey] || []), newExpense],
-    }));
-  };
-
-  const deleteExpense = (id: number) => {
-    const dateKey = format(selectedDate, "yyyy-MM-dd");
-    setExpensesByDate((prev) => ({
-      ...prev,
-      [dateKey]: prev[dateKey].filter((expense) => expense.id !== id),
-    }));
   };
 
   const monthStart = startOfMonth(currentDate);
@@ -93,26 +75,26 @@ const Calendar: React.FC = () => {
             !isSameMonth(day, monthStart)
               ? styles.disabled
               : isSameDay(day, selectedDate)
-              ? styles.selected
-              : ""
+                ? styles.selected
+                : ''
           }`}
           key={day.toString()}
           onClick={() => onDateClick(cloneDay)}
         >
-          <span className={styles.number}>{format(day, "d")}</span>
+          <span className={styles.number}>{format(day, 'd')}</span>
           {totalExpense > 0 && (
             <span className={styles.expense}>
               {totalExpense.toLocaleString()}원
             </span>
           )}
-        </div>
+        </div>,
       );
       day = addDays(day, 1);
     }
     rows.push(
       <div className={styles.row} key={day.toString()}>
         {days}
-      </div>
+      </div>,
     );
     days = [];
   }
@@ -123,16 +105,16 @@ const Calendar: React.FC = () => {
         <header className={styles.header}>
           <div className={styles.monthDisplay}>
             <span className={styles.year}>
-              {format(currentDate, "yyyy", { locale: ko })}
+              {format(currentDate, 'yyyy', { locale: ko })}
             </span>
             <span className={styles.month}>
-              {format(currentDate, "M", { locale: ko })}
+              {format(currentDate, 'M', { locale: ko })}
             </span>
           </div>
         </header>
         <YearSelector
           currentYear={currentDate.getFullYear()}
-          onYearChange={(year) =>
+          onYearChange={year =>
             setCurrentDate(new Date(year, currentDate.getMonth(), 1))
           }
         />
@@ -142,7 +124,7 @@ const Calendar: React.FC = () => {
         />
 
         <div className={styles.days}>
-          {["일", "월", "화", "수", "목", "금", "토"].map((day) => (
+          {['일', '월', '화', '수', '목', '금', '토'].map(day => (
             <div className={styles.col} key={day}>
               {day}
             </div>
@@ -153,8 +135,6 @@ const Calendar: React.FC = () => {
       <ExpenseList
         selectedDate={selectedDate}
         // expenses={expensesByDate[format(selectedDate, "yyyyMMdd")] || []}
-        // addExpense={addExpense}
-        // deleteExpense={deleteExpense}
       />
     </div>
   );

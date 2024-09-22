@@ -1,30 +1,33 @@
-import React, { useState } from "react";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
-import styles from "./index.module.css";
-import { Button } from "../common/Button";
-import { formatNumber, unformatNumber } from "@/utils/common/formatNumber";
-import { Expense, useExpenseList } from "./hooks";
+import { Expense } from '@/domain/model/expense';
+import { formatNumber } from '@/utils/common/formatNumber';
+import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
+import React from 'react';
+import { Button } from '../common/Button';
+import { useExpenseList } from './hooks';
+import styles from './index.module.css';
 
-const DEFAULT_EXPENSE_TYPES = ["식비", "교통비", "오락", "공과금"];
+const DEFAULT_EXPENSE_TYPES = ['식비', '교통비', '오락', '공과금'];
 
 const ExpenseList = ({ selectedDate }: { selectedDate: Date }): JSX.Element => {
-  const { expenseData, refetchExpenses } = useExpenseList({
-    formattedDate: format(selectedDate, "yyyyMMdd"),
+  const {
+    expenseData,
+    refetchExpenses,
+    newExpense,
+    setNewExpense,
+    formattedDate,
+  } = useExpenseList({
+    selectedDate,
   });
 
-  const [newExpense, setNewExpense] = useState({
-    type: DEFAULT_EXPENSE_TYPES[0],
-    amount: "",
-  });
+  console.log(formattedDate, newExpense);
 
-  const addExpense = async (expense: Omit<Expense, "id">) => {
+  const addExpense = async (expense: Expense) => {
     try {
-      const formattedDate = format(selectedDate, "yyyyMMdd");
-      const response = await fetch("/api/expenses", {
-        method: "POST",
+      const response = await fetch('/api/expenses', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           ...expense,
@@ -35,68 +38,71 @@ const ExpenseList = ({ selectedDate }: { selectedDate: Date }): JSX.Element => {
           month: selectedDate.getMonth() + 1,
         }),
       });
+
       if (!response.ok) {
-        throw new Error("지출의 추가에 실패했습니다.");
+        throw new Error('지출의 추가에 실패했습니다.');
       }
+
       await refetchExpenses();
     } catch (err) {
       console.error(err);
-      alert("지출의 추가중 오류가 발생했습니다.");
+      alert('지출의 추가중 오류가 발생했습니다.');
     }
   };
 
-  const deleteExpense = async (id: number) => {
+  const deleteExpense = async (id: number | undefined) => {
     try {
+      if (!id) {
+        throw new Error('지출을 삭제하는데 실패했습니다.');
+      }
       const response = await fetch(`/api/expenses/${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
       if (!response.ok) {
-        throw new Error("지출을 삭제하는데 실패했습니다.");
+        throw new Error('지출을 삭제하는데 실패했습니다.');
       }
 
       await refetchExpenses();
     } catch (err) {
       console.error(err);
-      alert("지출을 삭제하는 중 오류가 발생했습니다.");
+      alert('지출을 삭제하는 중 오류가 발생했습니다.');
     }
   };
 
   const handleAddExpense = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.target as HTMLFormElement;
-
-    const type: string = (form.elements.namedItem("type") as HTMLSelectElement)
-      .value;
-    const amount: string = (
-      form.elements.namedItem("amount") as HTMLInputElement
-    ).value;
-
-    if (!type && !amount) {
+    if (!newExpense.category && !newExpense.amount) {
       return;
     }
 
-    if (type && amount) {
-      addExpense({
-        category: type,
-        amount: unformatNumber(amount),
-      });
-    }
+    addExpense({
+      category: newExpense.category,
+      amount: newExpense.amount,
+      date: formattedDate,
+      year: selectedDate.getFullYear(),
+      month: selectedDate.getMonth() + 1,
+    });
+
+    setNewExpense({
+      category: '식비',
+      amount: '',
+    });
   };
 
   return (
     <div className={styles.expenseList}>
-      <h2>{format(selectedDate, "yyyy/MM/dd", { locale: ko })}</h2>
+      <h2>{format(selectedDate, 'yyyy/MM/dd', { locale: ko })}</h2>
 
       {/* <h3>총 지출액: ₩{totalExpense.toLocaleString()}</h3> */}
       <form className={styles.inputContainer} onSubmit={handleAddExpense}>
         <select
-          value={newExpense.type}
-          onChange={(e) =>
-            setNewExpense({ ...newExpense, type: e.target.value })
+          value={newExpense.category}
+          onChange={e =>
+            setNewExpense({ ...newExpense, category: e.target.value })
           }
         >
-          {DEFAULT_EXPENSE_TYPES.map((type) => (
+          {DEFAULT_EXPENSE_TYPES.map(type => (
             <option key={type} value={type}>
               {type}
             </option>
@@ -106,7 +112,7 @@ const ExpenseList = ({ selectedDate }: { selectedDate: Date }): JSX.Element => {
           type="text"
           placeholder="금액"
           value={newExpense.amount}
-          onChange={(e) =>
+          onChange={e =>
             setNewExpense({
               ...newExpense,
               amount: formatNumber(e.target.value),
@@ -123,7 +129,7 @@ const ExpenseList = ({ selectedDate }: { selectedDate: Date }): JSX.Element => {
               <span className={styles.expenseAmount}>
                 ₩{expense.amount.toLocaleString()}
               </span>
-              <Button onClick={() => deleteExpense(expense.id)}>삭제</Button>
+              <Button onClick={() => deleteExpense(expense?.id)}>삭제</Button>
             </li>
           ))}
         </ul>

@@ -1,21 +1,27 @@
-import { useEffect, useState, useCallback } from "react";
-
-export type Expense = {
-  id: number;
-  category: string;
-  amount: number;
-};
+import { Expense } from "@/domain/model/expense";
+import { format } from "date-fns";
+import { useEffect, useState, useCallback, useMemo } from "react";
 
 
-type Args = { formattedDate: string }
+type Args = { selectedDate: Date }
 
 type ReturnValue = {
+  newExpense: Pick<Expense, "category" | "amount">;
   expenseData: Expense[];
+  formattedDate: string;
   refetchExpenses: () => Promise<void>;
+  setNewExpense: (expense: Pick<Expense, "category" | "amount">) => void;
 }
 
-export const useExpenseList = ({ formattedDate }: Args): ReturnValue => {
-  const [expenseData, setExpenseData] = useState<Expense[]>([]);  // 初期値を空配列に
+export const useExpenseList = ({ selectedDate }: Args): ReturnValue => {
+  const [expenseData, setExpenseData] = useState<Expense[]>([]);
+
+  const [newExpense, setNewExpense] = useState<Pick<Expense, "category" | "amount">>({
+    category: "식비",
+    amount: "",
+  });
+
+  const formattedDate = useMemo(() => format(selectedDate, 'yyyyMMdd'), [selectedDate])
 
   const fetchExpenseList = useCallback(async () => {
     try {
@@ -36,5 +42,5 @@ export const useExpenseList = ({ formattedDate }: Args): ReturnValue => {
     fetchExpenseList();
   }, [fetchExpenseList]);
 
-  return { expenseData, refetchExpenses: fetchExpenseList };
+  return { expenseData, newExpense, formattedDate, setNewExpense, refetchExpenses: fetchExpenseList };
 }
