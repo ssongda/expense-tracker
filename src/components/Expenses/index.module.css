@@ -5,6 +5,12 @@
     height: 720px;
 }
 
+@media (max-width: 768px) {
+    .expenseList {
+        width: 100%;
+    }
+}
+
 .expenseItems {
     list-style-type: none;
     padding: 0;

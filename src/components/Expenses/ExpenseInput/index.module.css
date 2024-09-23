@@ -45,3 +45,15 @@
     justify-content: center;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .inputContainer {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .inputContainer input {
+        width: 100%;
+        margin: 4px 0;
+    }
+}

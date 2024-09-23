@@ -1,26 +1,53 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--color-surface);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--color-surface);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
 }
 
 .logo a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.logoIcon {
+    display: none;
+    width: 24px;
+    height: 24px;
+    background-image: url("/path/to/your/icon.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .nav a {
-  margin-left: 1rem;
-  color: #666;
-  text-decoration: none;
+    margin-left: 1rem;
+    color: #666;
+    text-decoration: none;
 }
 
 .nav a:hover {
-  color: #000;
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    .logo a {
+        font-size: 0.7rem;
+    }
+
+    .logoText {
+        display: none;
+    }
+
+    .logoIcon {
+        display: block;
+    }
+
+    .nav a {
+        display: none;
+    }
 }

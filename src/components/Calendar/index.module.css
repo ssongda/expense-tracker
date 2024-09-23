@@ -1,7 +1,7 @@
 .calendarContainer {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
 }
 
@@ -130,4 +130,11 @@
     background-color: red;
     margin-left: 2px;
     vertical-align: super;
+}
+
+@media (max-width: 768px) {
+    .calendarContainer {
+        flex-direction: column;
+        max-width: 100%;
+    }
 }
