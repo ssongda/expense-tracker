@@ -1,5 +1,8 @@
 import { Expense } from '@/domain/model/expense';
-import { CheckSquare, Square } from 'react-feather';
+import {
+  CheckSquare,
+  Square,
+} from 'react-feather';
 import styles from './index.module.css';
 
 type Props = {
@@ -8,13 +11,15 @@ type Props = {
   onSelectExpenses: (idSet: Set<number>) => void;
 };
 
-export const ExpenseItem = async ({
+export const ExpenseItem = ({
   expense,
   selectedExpenses,
   onSelectExpenses,
-}: Props): Promise<JSX.Element> => {
+}: Props): JSX.Element => {
   const toggleExpenseSelection = (id: number) => {
-    const newSet: Set<number> = new Set(selectedExpenses);
+    const newSet: Set<number> = new Set(
+      selectedExpenses,
+    );
     if (newSet.has(id)) {
       newSet.delete(id);
     } else {
@@ -30,18 +35,30 @@ export const ExpenseItem = async ({
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
-            checked={selectedExpenses.has(expense.id!)}
-            onChange={() => toggleExpenseSelection(expense.id!)}
+            checked={selectedExpenses.has(
+              expense.id!,
+            )}
+            onChange={() =>
+              toggleExpenseSelection(expense.id!)
+            }
             className={styles.hiddenCheckbox}
           />
           <span className={styles.customCheckbox}>
-            {selectedExpenses.has(expense.id!) ? <CheckSquare /> : <Square />}
+            {selectedExpenses.has(expense.id!) ? (
+              <CheckSquare />
+            ) : (
+              <Square />
+            )}
           </span>
         </label>
       </td>
-      <td className={styles.tableCell}>{expense.category}</td>
+      <td className={styles.tableCell}>
+        {expense.category}
+      </td>
       <td className={styles.amountWrapper}>
-        <span>{expense.amount.toLocaleString()}</span>
+        <span>
+          {expense.amount.toLocaleString()}
+        </span>
       </td>
     </tr>
   );
