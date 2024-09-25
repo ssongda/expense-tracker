@@ -9,24 +9,14 @@ import {
   startOfWeek,
 } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ExpenseList from '../Expenses';
 import { Label } from '../Label';
 import YearSelector from '../YearSelector';
 import { CalendarHeader } from './CalendarHeader';
 import styles from './index.module.css';
 
-interface Expense {
-  id: number;
-  type: string;
-  amount: number;
-}
-
-interface ExpensesByDate {
-  [date: string]: Expense[];
-}
-
-const Calendar: React.FC = () => {
+const Calendar = (): JSX.Element => {
   const [currentDate, setCurrentDate] = useState(
     new Date(),
   );

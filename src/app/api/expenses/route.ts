@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { unformatNumber } from '@/utils/common/formatNumber';
 import { prisma } from '@/lib/prisma';
+import getSession from '@/lib/session';
 
 
 export async function GET(request: NextRequest) {
@@ -28,19 +29,23 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const session = await getSession();
     const body = await request.json();
     const { amount, category, date, year, month } = body;
 
+    const userId = session.id;
 
     if (!amount || !category || !date || !year || !month) {
       return NextResponse.json({ stateus: 400, message: '필요한 정보가 부족한 거 같은데요.' });
     }
 
-
     const newExpense = await prisma.expense.create({
       data: {
         amount: unformatNumber(amount),
         category,
+        user: {
+          connect: { id: userId + "" }
+        },
         date,
         year,
         month,

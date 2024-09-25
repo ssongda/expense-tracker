@@ -11,10 +11,12 @@ const publicOnlyUrls: Routes = {
   "/create-account": true,
   "/github/start": true,
   "/github/complete": true,
+  "/profile": true,
 };
 
 export async function middleware(request: NextRequest) {
   const session = await getSession();
+  console.log("middle?", session)
   const exists = publicOnlyUrls[request.nextUrl.pathname];
   if (!session.id) {
     if (!exists) {

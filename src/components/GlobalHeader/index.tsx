@@ -1,8 +1,17 @@
+import getSession from '@/lib/session';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { DollarSign } from 'react-feather';
 import styles from './index.module.css';
 
 export default function Header() {
+  const logOut = async () => {
+    'use server';
+    const session = await getSession();
+    await session.destroy();
+    redirect('/');
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -25,6 +34,9 @@ export default function Header() {
           소비 패턴 분석
         </Link>
       </nav>
+      <form action={logOut}>
+        <button>Log out</button>
+      </form>
     </header>
   );
 }
