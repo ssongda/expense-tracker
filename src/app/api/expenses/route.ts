@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { unformatNumber } from '@/utils/common/formatNumber';
 import { prisma } from '@/lib/prisma';
 
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const date = searchParams.get('date');
@@ -21,7 +22,7 @@ export async function GET(request: NextRequest) {
     });
     return NextResponse.json(expenses);
   } catch (error) {
-    return NextResponse.json({ error, status: 500, message: '서버 오류가 발생했습니다.' });
+    return NextResponse.json({ error, status: 500, message: '서버에 문제가 있어요!' });
   }
 }
 
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
 
 
     if (!amount || !category || !date || !year || !month) {
-      return NextResponse.json({ stateus: 400, message: '必須フィールドが欠けています' });
+      return NextResponse.json({ stateus: 400, message: '필요한 정보가 부족한 거 같은데요.' });
     }
 
 
@@ -42,7 +43,7 @@ export async function POST(request: NextRequest) {
         category,
         date,
         year,
-        month
+        month,
       }
     });
 
