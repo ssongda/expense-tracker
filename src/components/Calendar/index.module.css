@@ -122,19 +122,38 @@
     color: #e74c3c;
 }
 
-.todayBadge {
+.todayLabel {
+    position: absolute;
+    top: -5px;
+    right: 5px;
     display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: red;
-    margin-left: 2px;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
     vertical-align: super;
+}
+
+.todayBadge {
+    display: none;
 }
 
 @media (max-width: 768px) {
     .calendarContainer {
         flex-direction: column;
         max-width: 100%;
+    }
+
+    .todayLabel {
+        display: none;
+    }
+
+    .todayBadge {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--color-red);
+        margin-left: 0.25rem;
+        margin-top: 0.1rem;
+        vertical-align: super;
     }
 }

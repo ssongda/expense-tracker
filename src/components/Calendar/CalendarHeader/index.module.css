@@ -5,3 +5,12 @@
     padding: 10px;
     background: var(--color-surface);
 }
+
+@media (max-width: 768px) {
+    .headerWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--color-surface);
+    }
+}

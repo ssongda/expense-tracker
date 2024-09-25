@@ -1,0 +1,33 @@
+.socialLoginContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.socialLoginButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.socialLoginButton span {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    border-radius: 50%;
+    background-color: var(--color-green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon svg {
+    width: 16px;
+    height: 16px;
+}

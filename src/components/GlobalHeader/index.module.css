@@ -35,19 +35,7 @@
 }
 
 @media (max-width: 768px) {
-    .logo a {
-        font-size: 0.7rem;
-    }
-
-    .logoText {
-        display: none;
-    }
-
-    .logoIcon {
-        display: block;
-    }
-
-    .nav a {
+    .header {
         display: none;
     }
 }

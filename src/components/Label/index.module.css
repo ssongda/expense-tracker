@@ -1,0 +1,11 @@
+.label {
+    display: inline-block;
+    padding: 3px 5px;
+    font-size: 8px;
+    font-weight: 600;
+    color: var(--color-lavender-dark);
+    background-color: var(--color-lavender-light);
+    border-radius: 10px;
+    border: 2px solid var(--color-lavender);
+    text-align: center;
+}
