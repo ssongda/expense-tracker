@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/common/Button';
 import FormInput from '@/components/common/Input';
+import SocialLogin from '@/components/SocialLogin';
 import Link from 'next/link';
 import { useActionState } from 'react';
 import { createAccount } from './actions';
@@ -72,6 +73,7 @@ export default function CreateAccount() {
         </Link>
       </div>
       <div className={styles.divider} />
+      <SocialLogin />
     </div>
   );
 }
