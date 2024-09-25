@@ -1,13 +1,15 @@
 'use client';
 
+import { ButtonHTMLAttributes } from 'react';
 import { useFormStatus } from 'react-dom';
 import styles from './index.module.css';
 
-type Props = {
-  large?: boolean;
-  children: React.ReactNode;
-  className?: string;
-};
+type Props =
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    large?: boolean;
+    children: React.ReactNode;
+    className?: string;
+  };
 
 export const Button = ({
   large,
