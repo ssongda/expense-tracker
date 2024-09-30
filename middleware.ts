@@ -9,6 +9,7 @@ const publicOnlyUrls: Routes = {
   "/": true,
   "/login": true,
   "/create-account": true,
+  "/expences": true,
   "/github/start": true,
   "/github/complete": true,
   "/profile": true,

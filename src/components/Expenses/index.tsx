@@ -1,7 +1,6 @@
 import { Expense } from '@/domain/model/expense';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import Link from 'next/link';
 import { Suspense } from 'react';
 import { ExpenseInput } from './ExpenseInput';
 import { ExpenseItem } from './ExpenseItem';
@@ -38,7 +37,6 @@ const ExpenseList = ({
         selectedDate={selectedDate}
         refetchExpenses={refetchExpenses}
       />
-      <Link href="/profile">Test</Link>
 
       <ExpenseTotal totalAmount={totalAmount} />
 

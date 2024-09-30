@@ -2,6 +2,7 @@ import { formatNumber } from "@/utils/common/formatNumber";
 import { useCallback, useMemo, useRef } from "react";
 import { addExpense } from "../../hooks/addExpense";
 import { format } from "date-fns";
+import getSession from "@/lib/session";
 
 type Args = {
   selectedDate: Date;
@@ -44,6 +45,8 @@ export const useExpenseInput = ({ selectedDate, refetchExpenses }: Args): Return
     if (!category || !amount) {
       return;
     }
+
+
 
     addExpense({
       category,

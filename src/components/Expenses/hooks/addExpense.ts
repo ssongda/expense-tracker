@@ -1,4 +1,5 @@
 import { Expense } from "@/domain/model/expense";
+import getSession from "@/lib/session";
 
 type Args = {
   category: string;
@@ -10,6 +11,8 @@ type Args = {
 }
 
 export const addExpense = async ({ category, amount, date, year, month, refetchExpenses }: Args) => {
+
+
   try {
     const response = await fetch('/api/expenses', {
       method: 'POST',

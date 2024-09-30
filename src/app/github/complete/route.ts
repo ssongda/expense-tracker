@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
   });
   if (user) {
     const session = await getSession();
-    session.id = Number(user.id);
+    session.id = user.id;
     await session.save();
     return redirect("/expenses");
   }
@@ -60,7 +60,7 @@ export async function GET(request: NextRequest) {
     },
   });
   const session = await getSession();
-  session.id = Number(newUser.id);
+  session.id = newUser.id;
   await session.save();
   return redirect("/expenses");
 }

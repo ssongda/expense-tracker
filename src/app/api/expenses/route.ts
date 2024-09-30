@@ -7,6 +7,7 @@ import getSession from '@/lib/session';
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const date = searchParams.get('date');
+  const session = await getSession();
 
   if (!date) {
     return NextResponse.json({ status: 400, message: '유효하지 않은 날짜입니다.' });
@@ -15,7 +16,8 @@ export async function GET(request: NextRequest) {
   try {
     const expenses = await prisma.expense.findMany({
       where: {
-        date: date
+        date: date,
+        userId: session.id
       },
       orderBy: {
         createdAt: 'asc'
@@ -28,12 +30,14 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+
+
+
+
   try {
     const session = await getSession();
     const body = await request.json();
     const { amount, category, date, year, month } = body;
-
-    const userId = session.id;
 
     if (!amount || !category || !date || !year || !month) {
       return NextResponse.json({ stateus: 400, message: '필요한 정보가 부족한 거 같은데요.' });
@@ -43,15 +47,18 @@ export async function POST(request: NextRequest) {
       data: {
         amount: unformatNumber(amount),
         category,
-        user: {
-          connect: { id: userId + "" }
-        },
         date,
         year,
         month,
+        user: {
+          connect: {
+            id: session.id
+          }
+        }
       }
     });
 
+    console.log(newExpense)
     return NextResponse.json(newExpense, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error, status: 500, message: '서버 오류가 발생했습니다.' });

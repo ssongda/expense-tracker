@@ -51,7 +51,7 @@ export const ExpenseInput = ({
         onInput={handleInputChange}
       />
       <Button type="submit">
-        <PlusCircle></PlusCircle>
+        <PlusCircle />
       </Button>
     </form>
   );

@@ -31,7 +31,7 @@ model User {
   username   String    @unique
   email      String?   @unique
   password   String?
-  github_id  String?   @unique
+  github_id  String?
   avatar     String?
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt

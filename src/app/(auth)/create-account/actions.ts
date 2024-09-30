@@ -9,6 +9,8 @@ import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import getSession from "@/lib/session";
+import { cookies } from "next/headers";
+import { ObjectId } from "bson";
 
 
 const checkPasswords = ({
@@ -94,6 +96,7 @@ const formSchema = z
   });
 
 export async function createAccount(prevState: any, formData: FormData) {
+  console.log(cookies())
   const data = {
     username: formData.get("username"),
     email: formData.get("email"),
@@ -106,19 +109,26 @@ export async function createAccount(prevState: any, formData: FormData) {
     return result.error.flatten();
   } else {
     const hashedPassword = await bcrypt.hash(result.data.password, 12);
-    const user = await prisma.user.create({
-      data: {
-        username: result.data.username,
-        email: result.data.email,
-        password: hashedPassword,
-      },
-      select: {
-        id: true,
-      },
-    });
-    const session = await getSession();
-    session.id = Number(user.id);
-    await session.save();
-    redirect("/expenses");
+    try {
+
+      const user = await prisma.user.create({
+        data: {
+          id: new ObjectId().toString(),
+          username: result.data.username,
+          email: result.data.email,
+          password: hashedPassword,
+        },
+        select: {
+          id: true,
+        },
+      });
+      const session = await getSession();
+      session.id = user.id;
+      await session.save();
+      redirect("/expenses");
+    } catch (errors) {
+      console.log(errors)
+      redirect("/");
+    }
   }
 }

@@ -2,6 +2,7 @@ import getSession from '@/lib/session';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { DollarSign } from 'react-feather';
+import { Button } from '../common/Button';
 import styles from './index.module.css';
 
 export default function Header() {
@@ -13,7 +14,7 @@ export default function Header() {
   };
 
   return (
-    <header className={styles.header}>
+    <div className={styles.header}>
       <div className={styles.logo}>
         <Link
           href="/"
@@ -35,8 +36,8 @@ export default function Header() {
         </Link>
       </nav>
       <form action={logOut}>
-        <button>Log out</button>
+        <Button>Log out</Button>
       </form>
-    </header>
+    </div>
   );
 }
