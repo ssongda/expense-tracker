@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { amount, category, date, year, month } = body;
 
-    if (!amount || !category || !date || !year || !month) {
+    if (!amount || !category || !date || !year || !month || !session.id) {
       return NextResponse.json({ stateus: 400, message: '필요한 정보가 부족한 거 같은데요.' });
     }
 
@@ -50,11 +50,7 @@ export async function POST(request: NextRequest) {
         date,
         year,
         month,
-        user: {
-          connect: {
-            id: session.id
-          }
-        }
+        userId: session.id
       }
     });
 
