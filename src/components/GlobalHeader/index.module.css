@@ -13,6 +13,7 @@
     font-weight: bold;
     color: #333;
     text-decoration: none;
+    flex: 1;
 }
 
 .logoIcon {
@@ -24,8 +25,13 @@
     background-repeat: no-repeat;
 }
 
+.menus {
+    display: flex;
+    align-items: center;
+}
+
 .nav a {
-    margin-left: 1rem;
+    margin-right: 3rem;
     color: #666;
     text-decoration: none;
 }
@@ -35,6 +41,22 @@
 }
 
 @media (max-width: 768px) {
+    .logoText {
+        display: none;
+    }
+
+    .logoIcon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+    }
+
+    .nav {
+        display: none;
+    }
+
     .header {
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
     }
 }

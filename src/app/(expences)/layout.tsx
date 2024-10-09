@@ -1,4 +1,5 @@
 import Header from '@/components/GlobalHeader';
+import { Suspense } from 'react';
 
 export default function ExpensesLayout({
   children,
@@ -7,7 +8,9 @@ export default function ExpensesLayout({
 }>) {
   return (
     <>
-      <Header />
+      <Suspense>
+        <Header />
+      </Suspense>
       <div>{children}</div>
     </>
   );
