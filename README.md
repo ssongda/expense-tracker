@@ -17,7 +17,7 @@
 - CSS Modules (스타일링)
 
 ## 프로젝트 구조
-
+```shell
 expense-tracker/
 ├── .next/                                # Next.js 빌드 아티팩트 (자동 생성)
 ├── node_modules/                         # 프로젝트 의존성 (자동 생성)
@@ -137,3 +137,4 @@ expense-tracker/
 ├── package.json                          # 프로젝트 의존성 및 스크립트
 ├── tsconfig.json                         # TypeScript 설정 파일
 └── yarn.lock                             # Yarn 패키지의 정확한 버전 관리 (자동 생성)
+```
