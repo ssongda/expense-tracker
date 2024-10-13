@@ -29,8 +29,8 @@ const formSchema = z
   .object({
     username: z
       .string({
-        invalid_type_error: "문자만 입력할 수 있어요!",
-        required_error: "사용자 이름은 꼭 필요해요!",
+        invalid_type_error: "文字だけ入力できます!",
+        required_error: "ユーザー名は必要です!",
       })
       .toLowerCase()
       .trim()
@@ -54,7 +54,7 @@ const formSchema = z
       if (user) {
         ctx.addIssue({
           code: "custom",
-          message: "이름 짓기가 쉽지 않죠?",
+          message: "ユーザー名を付けるのは難しいですか？",
           path: ["username"],
           fatal: true,
         });
@@ -64,7 +64,7 @@ const formSchema = z
       console.error("Invalid username:", error);
       ctx.addIssue({
         code: "custom",
-        message: "사용자 이름에 문제가 있나 봐요!",
+        message: "ユーザー名に問題があります!",
         path: ["username"],
         fatal: true,
       });
@@ -83,7 +83,7 @@ const formSchema = z
     if (user) {
       ctx.addIssue({
         code: "custom",
-        message: "이미 사용 중인 이메일이에요! 전에 만난 적이 있나요?",
+        message: "使っているEメールです! 前に会ったことあるかも",
         path: ["email"],
         fatal: true,
       });
@@ -91,7 +91,7 @@ const formSchema = z
     }
   })
   .refine(checkPasswords, {
-    message: "똑같이 입력해 주세요!",
+    message: "同じパスワードを入力してください!",
     path: ["confirm_password"],
   });
 

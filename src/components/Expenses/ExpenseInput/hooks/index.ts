@@ -39,7 +39,7 @@ export const useExpenseInput = ({ selectedDate, refetchExpenses }: Args): Return
   const handleAddExpense = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const category = categoryRef.current?.value || '식비';
+    const category = categoryRef.current?.value || '食費';
     const amount = amountRef.current?.value || '';
 
     if (!category || !amount) {
@@ -58,7 +58,7 @@ export const useExpenseInput = ({ selectedDate, refetchExpenses }: Args): Return
     });
 
     if (categoryRef.current) {
-      categoryRef.current.value = "식비";
+      categoryRef.current.value = "食費";
     }
     if (amountRef.current) {
       amountRef.current.value = '';

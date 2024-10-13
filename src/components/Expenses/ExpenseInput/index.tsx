@@ -4,10 +4,19 @@ import { useExpenseInput } from './hooks';
 import styles from './index.module.css';
 
 const DEFAULT_EXPENSE_TYPES = [
-  '식비',
-  '교통비',
-  '오락',
-  '공과금',
+  '食費',
+  '交通費',
+  '日用品',
+  '水道・光熱',
+  '通信費',
+  'お住まい',
+  '依頼',
+  'レジャー',
+  '美容',
+  '書籍',
+  '医療費',
+  '教育',
+  '貯金',
 ];
 
 type Props = {
@@ -46,7 +55,7 @@ export const ExpenseInput = ({
       </select>
       <input
         type="text"
-        placeholder="금액을 입력하세요"
+        placeholder="金額を入力してください"
         ref={amountRef}
         onInput={handleInputChange}
       />

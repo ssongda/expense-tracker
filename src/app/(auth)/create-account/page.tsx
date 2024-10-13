@@ -18,7 +18,7 @@ export default function CreateAccount() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.h1}>
-          만나서 반가워!
+          初めまして!
         </h1>
       </div>
       <form
@@ -61,15 +61,15 @@ export default function CreateAccount() {
             }
           />
         </div>
-        <Button large>시작합시다!</Button>
+        <Button large>始めましょう!</Button>
       </form>
       <div>
-        <span>이미 계정이 있나요?</span>{' '}
+        <span>アカウントがありますか?</span>{' '}
         <Link
           href="/login"
           className={styles.loginLink}
         >
-          로그인
+          ログイン
         </Link>
       </div>
       <div className={styles.divider} />

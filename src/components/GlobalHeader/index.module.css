@@ -16,10 +16,9 @@
 }
 
 .logoIcon {
-    display: none;
     width: 24px;
     height: 24px;
-    background-image: url("/path/to/your/icon.svg");
+    /* background-image: url("/path/to/your/icon.svg"); */
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -35,6 +34,5 @@
 }
 
 @media (max-width: 768px) {
-    .header {
-    }
+    .header {}
 }

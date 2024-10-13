@@ -18,7 +18,7 @@ export default function Login() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.h1}>
-          돌아온 걸 환영해!
+          戻って来て(人''▽｀)ありがとう☆!
         </h1>
       </div>
       <form
@@ -42,15 +42,15 @@ export default function Login() {
             errors={state?.fieldErrors.password}
           />
         </div>
-        <Button large>로그인</Button>
+        <Button large>ログイン</Button>
       </form>
       <div>
-        <span>계정이 없나요?</span>{' '}
+        <span>アカウントがないですか?</span>{' '}
         <Link
           href="/create-account"
           className={styles.loginLink}
         >
-          계정 만들기
+          新しいアカウント
         </Link>
       </div>
       <div className={styles.divider} />

@@ -20,7 +20,7 @@ export default function Header() {
           href="/"
           className={styles.logoText}
         >
-          지출 흐름 가계부
+          支出フロー家計簿
         </Link>
         <Link
           href="/"
@@ -30,13 +30,13 @@ export default function Header() {
         </Link>
       </div>
       <nav className={styles.nav}>
-        <Link href="/expenses">지출 기록</Link>
+        <Link href="/expenses">支出記録</Link>
         <Link href="/analysis">
-          소비 패턴 분석
+          消費パータン分析
         </Link>
       </nav>
       <form action={logOut}>
-        <Button>Log out</Button>
+        <Button>ログアウト</Button>
       </form>
     </div>
   );

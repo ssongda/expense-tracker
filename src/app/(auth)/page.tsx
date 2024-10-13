@@ -8,23 +8,23 @@ export default function Home() {
       <div className={styles.content}>
         <span className={styles.emoji}>💰</span>
         <h1 className={styles.title}>
-          지출 흐름 관리
+          支出フロー管理
         </h1>
         <h2 className={styles.subtitle}>
-          얼마나 쓰는지 볼까?
+          どれくらい使うか見ようか？
         </h2>
       </div>
       <div className={styles.buttonContainer}>
         <Link href="/create-account">
-          <Button large>시작하기</Button>
+          <Button large>始める</Button>
         </Link>
         <div>
-          <span>이미 계정이 있나요?</span>{' '}
+          <span>アカウントがありますか？</span>{' '}
           <Link
             href="/login"
             className={styles.loginLink}
           >
-            로그인
+            ログイン
           </Link>
         </div>
       </div>

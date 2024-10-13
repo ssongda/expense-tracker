@@ -29,12 +29,12 @@ export const addExpense = async ({ category, amount, date, year, month, refetchE
     });
 
     if (!response.ok) {
-      throw new Error('지출의 추가에 실패했습니다.');
+      throw new Error('支出の追加が失敗しました。');
     }
 
     await refetchExpenses();
   } catch (err) {
 
-    alert('지출의 추가중 오류가 발생했습니다.');
+    alert('支出の追加の際にエラーが発生しました。');
   }
 };

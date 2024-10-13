@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   const session = await getSession();
 
   if (!date) {
-    return NextResponse.json({ status: 400, message: '유효하지 않은 날짜입니다.' });
+    return NextResponse.json({ status: 400, message: '無効な日付です。' });
   }
 
   try {
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     });
     return NextResponse.json(expenses);
   } catch (error) {
-    return NextResponse.json({ error, status: 500, message: '서버에 문제가 있어요!' });
+    return NextResponse.json({ error, status: 500, message: 'サーバに問題があります!' });
   }
 }
 
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     const { amount, category, date, year, month } = body;
 
     if (!amount || !category || !date || !year || !month || !session.id) {
-      return NextResponse.json({ stateus: 400, message: '필요한 정보가 부족한 거 같은데요.' });
+      return NextResponse.json({ stateus: 400, message: '必要な情報が足りないです。' });
     }
 
     const newExpense = await prisma.expense.create({
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     console.log(newExpense)
     return NextResponse.json(newExpense, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error, status: 500, message: '서버 오류가 발생했습니다.' });
+    return NextResponse.json({ error, status: 500, message: 'サーバにエラーが発生しました。' });
   }
 }
 
@@ -67,7 +67,7 @@ export async function DELETE(request: NextRequest) {
     const { ids } = body;
 
     if (!Array.isArray(ids) || ids.length === 0) {
-      return NextResponse.json({ status: 400, message: 'No valid IDs provided.' });
+      return NextResponse.json({ status: 400, message: 'IDが正しくありません。' });
     }
 
     const newExpense = await prisma.expense.deleteMany({
@@ -80,6 +80,6 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json(newExpense, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error, status: 500, message: '서버 오류가 발생했습니다.' });
+    return NextResponse.json({ error, status: 500, message: 'サーバにエラーが発生しました。' });
   }
 }

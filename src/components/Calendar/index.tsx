@@ -11,7 +11,7 @@ import {
 import { ko } from 'date-fns/locale';
 import { useState } from 'react';
 import ExpenseList from '../Expenses';
-import { Label } from '../Label';
+import { Label } from '../common/Label';
 import YearSelector from '../YearSelector';
 import { CalendarHeader } from './CalendarHeader';
 import styles from './index.module.css';
@@ -43,13 +43,12 @@ const Calendar = (): JSX.Element => {
       );
       days.push(
         <div
-          className={`${styles.col} ${styles.cell} ${
-            !isSameMonth(day, monthStart)
-              ? styles.disabled
-              : isSameDay(day, selectedDate)
-                ? styles.selected
-                : ''
-          }`}
+          className={`${styles.col} ${styles.cell} ${!isSameMonth(day, monthStart)
+            ? styles.disabled
+            : isSameDay(day, selectedDate)
+              ? styles.selected
+              : ''
+            }`}
           key={day.toString()}
           onClick={() => onDateClick(cloneDay)}
         >

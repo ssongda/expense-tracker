@@ -49,7 +49,7 @@ const ExpenseList = ({
         }
       />
       {Array.isArray(expenseData) &&
-      expenseData.length > 0 ? (
+        expenseData.length > 0 ? (
         <>
           <table className={styles.expenseTable}>
             <colgroup>
@@ -65,7 +65,7 @@ const ExpenseList = ({
             </colgroup>
             <tbody>
               <Suspense
-                fallback={<div>Loading...</div>}
+                fallback={<div>ローディング中...</div>}
               >
                 {expenseData.map(
                   (expense: Expense) => (
@@ -86,7 +86,7 @@ const ExpenseList = ({
           </table>
         </>
       ) : (
-        <div>내역이 없습니다.</div>
+        <div>該当データがありません。</div>
       )}
     </div>
   );

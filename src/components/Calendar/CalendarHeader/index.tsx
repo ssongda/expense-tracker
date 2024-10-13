@@ -29,7 +29,7 @@ export const CalendarHeader = ({ setCurrentDate, currentDate }: Props) => {
       <Button onClick={prevMonth}>
         {format(prevMonthDate, "M", { locale: ko })}
       </Button>
-      <Button onClick={goToToday}>오늘</Button>
+      <Button onClick={goToToday}>今日</Button>
       <Button onClick={nextMonth}>
         {format(nextMonthDate, "M", { locale: ko })}
       </Button>

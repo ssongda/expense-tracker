@@ -9,8 +9,8 @@ const LoginForm = (): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // 여기에 로그인 로직을 구현하세요
-    console.log('로그인 시도:', email, password);
+    // ログインロジック
+    console.log('ログイン試行:', email, password);
   };
 
   return (
@@ -19,9 +19,9 @@ const LoginForm = (): JSX.Element => {
         onSubmit={handleSubmit}
         className={styles.loginForm}
       >
-        <h2>로그인</h2>
+        <h2>ログイン</h2>
         <div className={styles.inputGroup}>
-          <label htmlFor="email">이메일</label>
+          <label htmlFor="email">Eメール</label>
           <input
             type="email"
             id="email"
@@ -34,7 +34,7 @@ const LoginForm = (): JSX.Element => {
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="password">
-            비밀번호
+            パスワード
           </label>
           <input
             type="password"
@@ -50,7 +50,7 @@ const LoginForm = (): JSX.Element => {
           type="submit"
           className={styles.loginButton}
         >
-          로그인
+          ログイン
         </button>
       </form>
     </div>

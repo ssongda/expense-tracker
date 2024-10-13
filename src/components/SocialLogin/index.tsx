@@ -18,7 +18,7 @@ export default function SocialLogin() {
               className={styles.socialLoginButton}
             >
               <GitHub className={styles.icon} />
-              <span>Continue with Github</span>
+              <span>Githubで続ける</span>
             </div>
           </Button>
         </Link>
