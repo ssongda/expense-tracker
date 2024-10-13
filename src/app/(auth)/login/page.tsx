@@ -45,7 +45,7 @@ export default function Login() {
         <Button large>ログイン</Button>
       </form>
       <div>
-        <span>アカウントがないですか?</span>{' '}
+        <span>アカウントがありませんか？</span>{' '}
         <Link
           href="/create-account"
           className={styles.loginLink}
