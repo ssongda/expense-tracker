@@ -1,11 +1,11 @@
 export const formatNumber = (value: string): string => {
-  // 숫자와 쉼표만 남기고 모두 제거
+  // 数字とカンマだけを残して、他のすべてを削除
   const numbers = value.replace(/[^0-9,]/g, '');
-  // 쉼표 제거
+  // カンマ削除
   const numberWithoutCommas = numbers.replace(/,/g, '');
-  // 13자리로 제한
+  // 13桁に制限
   const limitedNumber = numberWithoutCommas.slice(0, 13);
-  // 세 자리마다 쉼표 추가
+  // 3桁ごとにカンマを追加
   return limitedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
