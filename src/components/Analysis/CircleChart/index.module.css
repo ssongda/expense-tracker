@@ -1,0 +1,8 @@
+.circle {
+    transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.backgroundCircle {
+    stroke: lightgray;
+    fill: transparent;
+}
