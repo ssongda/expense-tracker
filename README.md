@@ -28,7 +28,7 @@ src/
 │  │  ├─create-account     # アカウント生成
 │  │  └─login              # ログイン
 │  ├─(expences)            
-│  │  ├─analysis           # 支出分析
+│  │  ├─analysis           # 消費パターン分析
 │  │  └─expenses           # 支出一覧
 │  ├─api 
 │  │  └─expenses           # 支出API
@@ -37,25 +37,25 @@ src/
 │      ├─complete
 │      └─start
 ├─components
-│  ├─Analysis
-│  ├─Calendar
-│  │  └─CalendarHeader
-│  ├─common
-│  │  ├─Button
+│  ├─Analysis              # 消費パターン分析
+│  ├─Calendar              # カレンダー
+│  │  └─CalendarHeader     # 月別に移動
+│  ├─common                # 共通
+│  │  ├─Button             
 │  │  ├─Input
 │  │  └─Label
-│  ├─Expenses
-│  │  ├─ExpenseInput
+│  ├─Expenses              # 支出記録
+│  │  ├─ExpenseInput       # 支出の金額入力
 │  │  │  └─hooks
-│  │  ├─ExpenseItem
-│  │  ├─ExpenseTotal
+│  │  ├─ExpenseItem        # 支出の一覧
+│  │  ├─ExpenseTotal       # 支出の合計
 │  │  ├─hooks
-│  │  └─ListControlPanel
+│  │  └─ListControlPanel   # 支出の削除コントローラー
 │  │      └─hooks
-│  ├─GlobalHeader
-│  │  └─Avatar
-│  ├─SocialLogin
-│  └─YearSelector
+│  ├─GlobalHeader          # グローバーヘッダー
+│  │  └─Avatar             # アバター（ログアウト）
+│  ├─SocialLogin           # ソーシャルログイン
+│  └─YearSelector          # 年別に移動
 ├─domain
 │  └─model
 │      ├─expense
