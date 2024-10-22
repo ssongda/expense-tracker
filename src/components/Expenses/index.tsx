@@ -9,6 +9,7 @@ import { useExpenseList } from './hooks';
 import styles from './index.module.css';
 import { ListControlPanel } from './ListControlPanel';
 
+/** 支出一覧を表示するコンポーネント */
 const ExpenseList = ({
   selectedDate,
 }: {
