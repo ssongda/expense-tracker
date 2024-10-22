@@ -5,8 +5,8 @@ import { useState } from "react";
 import { format } from "date-fns";
 import YearSelector from "../YearSelector";
 import styles from './index.module.css';
-import { ko } from "date-fns/locale";
-import CircleChart from "./CircleChart";
+import { ja } from "date-fns/locale";
+import PieChart from "./PieChart";
 import ExpenseTable from './ExpenseTable';
 
 const Analysis = (): JSX.Element => {
@@ -25,12 +25,12 @@ const Analysis = (): JSX.Element => {
                     <div className={styles.monthDisplay}>
                         <span className={styles.year}>
                             {format(currentDate, 'yyyy', {
-                                locale: ko,
+                                locale: ja,
                             })}
                         </span>
                         <span className={styles.month}>
                             {format(currentDate, 'M', {
-                                locale: ko,
+                                locale: ja,
                             })}
                         </span>
                     </div>
@@ -60,7 +60,7 @@ const Analysis = (): JSX.Element => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td><CircleChart percentages={percentages} /></td>
+                            <td><PieChart percentages={percentages} /></td>
                         </tr>
                         <tr>
                             <td>支出計: {totalAmount}</td>
